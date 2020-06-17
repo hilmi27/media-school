@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\About;
+
 class FrontController extends Controller
 {
     public function homepage()
@@ -13,7 +15,8 @@ class FrontController extends Controller
 
     public function about()
     {
-        return view ('about');
+        $about = About::find(1);
+        return view ('about',compact('about'));
     }
 
     public function guru()

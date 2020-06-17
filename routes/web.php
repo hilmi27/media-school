@@ -28,3 +28,13 @@ Route::get('agenda','FrontController@agenda')->name('agenda');
 Route::get('pengumuman','FrontController@pengumuman')->name('pengumuman');
 
 Route::get('hubungi-kami','FrontController@kontak')->name('kontak');
+
+
+Route::prefix('admin')->middleware('auth')->group(function () {
+
+    Route::get('dashboard','DashboardController@index')->name('admin.dashboard');
+
+    Route::get('about','AboutController@edit')->name('admin.about.edit');
+
+    Route::post('about','AboutController@update')->name('admin.about.update');
+});

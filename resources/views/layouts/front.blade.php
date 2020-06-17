@@ -48,12 +48,12 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="{{ route('homepage') }}">Beranda</a></li>
-          <li><a href="{{ route('about') }}">Tentang Kami</a></li>
-          <li><a href="{{ route('guru') }}">Guru</a></li>
-          <li><a href="{{ route('agenda') }}">Agenda</a></li>
-          <li><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
-          <li><a href="{{ route('kontak') }}">Hubungi Kami</a></li>
+          <li {{ request()->is('/') ? 'class=active' : '' }}><a href="{{ route('homepage') }}">Beranda</a></li>
+          <li {{ request()->is('tentang-kami') ? 'class=active' : '' }}><a href="{{ route('about') }}">Tentang Kami</a></li>
+          <li {{ request()->is('data-pengajar') ? 'class=active' : '' }}><a href="{{ route('guru') }}">Guru</a></li>
+          <li {{ request()->is('agenda') ? 'class=active' : '' }}><a href="{{ route('agenda') }}">Agenda</a></li>
+          <li {{ request()->is('pengumuman') ? 'class=active' : '' }}><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
+          <li {{ request()->is('hubungi-kami') ? 'class=active' : '' }}><a href="{{ route('kontak') }}">Hubungi Kami</a></li>
 
         </ul>
       </nav><!-- .nav-menu -->
