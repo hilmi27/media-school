@@ -1205,8 +1205,7 @@ section {
     border: 0;
     padding: 0 30px;
     margin-bottom: 60px;
-    Object-fit: cover;
-    Object-position: center;
+    position: relative;
 }
 
 .pengumuman .card-img {

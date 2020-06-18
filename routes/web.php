@@ -37,4 +37,18 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('about','AboutController@edit')->name('admin.about.edit');
 
     Route::post('about','AboutController@update')->name('admin.about.update');
+
+    // Manage Guru
+    Route::get('guru','GuruController@index')->name('admin.guru');
+
+    Route::get('guru/create','GuruController@create')->name('admin.guru.create');
+
+    Route::post('guru/create','GuruController@store')->name('admin.guru.store');
+
+    Route::get('guru/edit/{id}','GuruController@edit')->name('admin.guru.edit');
+
+    Route::post('guru/edit/{id}','GuruController@update')->name('admin.guru.update');
+
+    Route::delete('guru/destroy/{id}','GuruController@destroy')->name('admin.guru.destroy');
+
 });

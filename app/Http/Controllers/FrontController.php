@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\About;
+use App\{About, Guru};
 
 class FrontController extends Controller
 {
@@ -21,7 +21,8 @@ class FrontController extends Controller
 
     public function guru()
     {
-        return view('guru');
+        $gurus = Guru::orderBy('name','asc')->paginate(9);
+        return view('guru',compact('gurus'));
     }
 
     public function agenda()
