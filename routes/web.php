@@ -27,6 +27,8 @@ Route::get('agenda','FrontController@agenda')->name('agenda');
 
 Route::get('pengumuman','FrontController@pengumuman')->name('pengumuman');
 
+Route::get('pengumuman/{slug}','FrontController@pengumumanshow')->name('pengumumanshow');
+
 Route::get('hubungi-kami','FrontController@kontak')->name('kontak');
 
 
@@ -50,5 +52,19 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('guru/edit/{id}','GuruController@update')->name('admin.guru.update');
 
     Route::delete('guru/destroy/{id}','GuruController@destroy')->name('admin.guru.destroy');
+
+
+     // Manage Pengumuman
+     Route::get('pengumuman','PengumumanController@index')->name('admin.pengumuman');
+
+     Route::get('pengumuman/create','PengumumanController@create')->name('admin.pengumuman.create');
+ 
+     Route::post('pengumuman/create','PengumumanController@store')->name('admin.pengumuman.store');
+ 
+     Route::get('pengumuman/edit/{id}','PengumumanController@edit')->name('admin.pengumuman.edit');
+ 
+     Route::post('pengumuman/edit/{id}','PengumumanController@update')->name('admin.pengumuman.update');
+ 
+     Route::delete('pengumuman/destroy/{id}','PengumumanController@destroy')->name('admin.pengumuman.destroy');
 
 });

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\{About, Guru};
+use App\{About, Guru, Pengumuman};
 
 class FrontController extends Controller
 {
@@ -32,7 +32,14 @@ class FrontController extends Controller
 
     public function pengumuman()
     {
-        return view('pengumuman');
+        $pengumuman = Pengumuman::orderBy('date','desc')->paginate(8);
+        return view('pengumuman',compact('pengumuman'));
+    }
+
+    public function pengumumanshow($slug)
+    {
+        $pengumuman = Pengumuman::where('slug',$slug)->first();
+        return view('pengumumanshow',compact('pengumuman'));
     }
 
     public function kontak()

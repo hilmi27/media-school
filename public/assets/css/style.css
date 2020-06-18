@@ -1203,13 +1203,14 @@ section {
 
 .pengumuman .card {
     border: 0;
-    padding: 0 30px;
+    padding: 0 40px 40px;
     margin-bottom: 60px;
     position: relative;
 }
 
 .pengumuman .card-img {
     width: calc(100% + 60px);
+    height: 100%;
     margin-left: -30px;
     overflow: hidden;
     z-index: 9;
@@ -1257,9 +1258,10 @@ section {
     color: #5fcf80;
 }
 
-.pengumuman .card:hover img {
+
+/* .pengumuman .card:hover img {
     transform: scale(1.1);
-}
+} */
 
 
 /*--------------------------------------------------------------

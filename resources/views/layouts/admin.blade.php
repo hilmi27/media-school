@@ -69,6 +69,13 @@
           <span>Guru</span></a>
       </li>
 
+       <!-- Nav Item - Charts -->
+       <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.pengumuman') }}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Pengumuman</span></a>
+      </li>
+
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -284,6 +291,12 @@
 
   <!-- Page level custom scripts -->
   <script src="{{ asset('admin/js/demo/datatables-demo.js')}}"></script>
+
+  <script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+  </script>
   @stack('scripts')
 
 </body>
