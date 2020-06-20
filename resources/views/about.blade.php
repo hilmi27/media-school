@@ -30,37 +30,45 @@
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts section-bg">
-      <div class="container">
+ 
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="fade-up">
 
-        <div class="row counters">
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">1232</span>
-            <p>Students</p>
-          </div>
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">64</span>
-            <p>Courses</p>
-          </div>
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">42</span>
-            <p>Events</p>
-          </div>
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">15</span>
-            <p>Trainers</p>
-          </div>
-
+        <div class="section-title">
+         <h2>F.A.Q</h2>
+          <p>Frequently Asked Questions</p>
         </div>
+         <div id="accordion">
+
+           @php
+                $no = 0;
+            @endphp
+
+      @foreach ($faq as $faq)
+          
+      <div class="card">
+        <div class="card-header" id="heading{{ $faq->id }}">
+          <h5 class="mb-0">
+           
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{ $faq->id }}" aria-expanded="false" aria-controls="collapse{{ $faq->id }}">
+              {{ ++$no }}. {{ $faq->question }}
+            </button>
+          </h5>
+        </div>
+    
+        <div id="collapse{{ $faq->id }}" class="collapse" aria-labelledby="heading{{ $faq->id }}" data-parent="#accordion">
+          <div class="card-body">
+            {{ $faq->answer }}
+          </div>
+        </div>
+      </div>
+ 
+      @endforeach
+
+    </div>
 
       </div>
-    </section><!-- End Counts Section -->
-
+    </section>
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials">
       <div class="container" data-aos="fade-up">

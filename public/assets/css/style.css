@@ -1057,6 +1057,12 @@ section {
     color: #657a6d;
 }
 
+.no-cover {
+    width: 400px;
+    height: 400px;
+    background-color: royalblue;
+}
+
 
 /*--------------------------------------------------------------
 # Cource Details Tabs
@@ -1233,7 +1239,7 @@ section {
 
 .pengumuman .card-title {
     font-weight: 700;
-    text-align: center;
+    text-align: left;
     margin-bottom: 20px;
 }
 
@@ -1259,9 +1265,135 @@ section {
 }
 
 
-/* .pengumuman .card:hover img {
-    transform: scale(1.1);
-} */
+/*--------------------------------------------------------------
+# Cource Details
+--------------------------------------------------------------*/
+
+.pengumuman-details h3 {
+    font-size: 24px;
+    margin: 30px 0 15px 0;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.pengumuman-details h3:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #eef0ef;
+    bottom: 0;
+    left: 0;
+}
+
+.pengumuman-details h3:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: #5fcf80;
+    bottom: 0;
+    left: 0;
+}
+
+.pengumuman-details .course-info {
+    background: #f6f7f6;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+
+.pengumuman-details .course-info h5 {
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.pengumuman-details .course-info p {
+    margin: 0;
+    font-weight: 600;
+}
+
+.pengumuman-details .course-info a {
+    color: #657a6d;
+}
+
+.no-cover {
+    width: 400px;
+    height: 400px;
+    background-color: royalblue;
+}
+
+.pengumuman-details .sidebar .recent-posts .post-item+.post-item {
+    margin-top: 15px;
+}
+
+.pengumuman-details .sidebar .recent-posts img {
+    width: 80px;
+    float: left;
+}
+
+.pengumuman-details .sidebar .recent-posts h4 {
+    font-size: 15px;
+    margin-left: 95px;
+    font-weight: bold;
+}
+
+.pengumuman-details .sidebar .recent-posts h4 a {
+    color: #292f36;
+    transition: 0.3s;
+}
+
+.pengumuman-details .sidebar .recent-posts h4 a:hover {
+    color: #d9232d;
+}
+
+.pengumuman-details .sidebar .recent-posts time {
+    display: block;
+    margin-left: 95px;
+    font-style: italic;
+    font-size: 14px;
+    color: #c1c8d0;
+}
+
+.pengumuman-details .sidebar .tags {
+    margin-bottom: -10px;
+}
+
+.pengumuman-details .sidebar .tags ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pengumuman-details .sidebar .tags ul li {
+    display: inline-block;
+}
+
+.pengumuman-details .sidebar .tags ul a {
+    color: #96a2af;
+    font-size: 14px;
+    padding: 6px 14px;
+    margin: 0 6px 8px 0;
+    border: 1px solid #dee2e6;
+    display: inline-block;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.pengumuman-details .sidebar .tags ul a:hover {
+    color: #fff;
+    border: 1px solid #d9232d;
+    background: #d9232d;
+}
+
+.pengumuman-details .sidebar .tags ul a span {
+    padding-left: 5px;
+    color: #fbfbfc;
+    font-size: 14px;
+}
 
 
 /*--------------------------------------------------------------

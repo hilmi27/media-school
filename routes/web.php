@@ -67,4 +67,18 @@ Route::prefix('admin')->middleware('auth')->group(function () {
  
      Route::delete('pengumuman/destroy/{id}','PengumumanController@destroy')->name('admin.pengumuman.destroy');
 
+
+      // Manage Pengumuman
+     Route::get('faq','FaqController@index')->name('admin.faq');
+
+     Route::get('faq/create','FaqController@create')->name('admin.faq.create');
+ 
+     Route::post('faq/create','FaqController@store')->name('admin.faq.store');
+ 
+     Route::get('faq/edit/{id}','FaqController@edit')->name('admin.faq.edit');
+ 
+     Route::post('faq/edit/{id}','FaqController@update')->name('admin.faq.update');
+ 
+     Route::delete('faq/destroy/{id}','FaqController@destroy')->name('admin.faq.destroy');
+
 });

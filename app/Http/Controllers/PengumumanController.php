@@ -40,6 +40,7 @@ class PengumumanController extends Controller
     {
         $pengumuman = new Pengumuman();
         $pengumuman->title = $request->title;
+        $pengumuman->slug = \Str::slug($request->title);
         $pengumuman->desc = $request->desc;
         $pengumuman->date = $request->date;
         $cover = $request->file('cover');
@@ -96,7 +97,6 @@ class PengumumanController extends Controller
     {
         $pengumuman           = Pengumuman::findOrFail($id);
         $pengumuman->title = $request->title;
-        $pengumuman->slug = \Str::slug($request->title);
         $pengumuman->desc = $request->desc;
         $pengumuman->date = $request->date;
 
