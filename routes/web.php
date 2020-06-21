@@ -29,7 +29,13 @@ Route::get('pengumuman','FrontController@pengumuman')->name('pengumuman');
 
 Route::get('pengumuman/{slug}','FrontController@pengumumanshow')->name('pengumumanshow');
 
+Route::get('gallery','FrontController@gallery')->name('gallery');
+
 Route::get('hubungi-kami','FrontController@kontak')->name('kontak');
+
+Route::post('hubungi-kami','FrontController@message')->name('message');
+
+Route::post('subscribe','FrontController@subscribe')->name('subscribe');
 
 
 Route::prefix('admin')->middleware('auth')->group(function () {
@@ -80,5 +86,28 @@ Route::prefix('admin')->middleware('auth')->group(function () {
      Route::post('faq/edit/{id}','FaqController@update')->name('admin.faq.update');
  
      Route::delete('faq/destroy/{id}','FaqController@destroy')->name('admin.faq.destroy');
+
+      // Manage Gallery
+     Route::get('gallery','GalleryController@index')->name('admin.gallery');
+
+     Route::get('gallery/create','GalleryController@create')->name('admin.gallery.create');
+ 
+     Route::post('gallery/create','GalleryController@store')->name('admin.gallery.store');
+ 
+     Route::get('gallery/edit/{id}','GalleryController@edit')->name('admin.gallery.edit');
+ 
+     Route::post('gallery/edit/{id}','GalleryController@update')->name('admin.gallery.update');
+ 
+     Route::delete('gallery/destroy/{id}','GalleryController@destroy')->name('admin.gallery.destroy');
+
+     Route::get('gallery/album/create','GalleryController@createalbum')->name('admin.album.createalbum');
+ 
+     Route::post('gallery/album/create','GalleryController@storealbum')->name('admin.album.storealbum');
+ 
+     Route::get('album/edit/{id}','AlbumController@edit')->name('admin.album.edit');
+ 
+     Route::post('album/edit/{id}','AlbumController@update')->name('admin.album.update');
+ 
+     Route::delete('album/destroy/{id}','AlbumController@destroy')->name('admin.album.destroy');
 
 });

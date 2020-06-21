@@ -24,6 +24,8 @@
   <link href="{{ asset('assets/vendor/owl.carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/venobox/venobox.css') }}" rel="stylesheet">
+
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
@@ -52,6 +54,7 @@
           <li {{ request()->is('data-pengajar') ? 'class=active' : '' }}><a href="{{ route('guru') }}">Guru</a></li>
           <li {{ request()->is('agenda') ? 'class=active' : '' }}><a href="{{ route('agenda') }}">Agenda</a></li>
           <li {{ request()->is('pengumuman') ? 'class=active' : '' }}><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
+          <li {{ request()->is('gallery') ? 'class=active' : '' }}><a href="{{ route('gallery') }}">Gallery</a></li>
           <li {{ request()->is('hubungi-kami') ? 'class=active' : '' }}><a href="{{ route('kontak') }}">Hubungi Kami</a></li>
 
         </ul>
@@ -107,8 +110,33 @@
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Join Our Newsletter</h4>
             <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
+             @if (session('subssuccess'))
+
+            <div class="alert alert-success">
+
+                {{ session('subssuccess') }}
+
+            </div>
+
+            @endif
+
+            @if (session('error'))
+
+            <div class="alert alert-danger">
+
+                {{ session('error') }}
+
+            </div>
+
+            @endif
+
+            <form action="{{ route('subscribe') }}" method="post">
+              @csrf
+              <input type="email" name="email" class="form-control {{$errors->first('email') ? "is-invalid" : "" }} " value="{{old('email')}}"><input type="submit" value="Subscribe">
+            
+              <div class="invalid-feedback">
+                {{ $errors->first('email') }}    
+            </div>
             </form>
           </div>
 
@@ -152,6 +180,7 @@
   <script src="{{ asset('assets/vendor/counterup/counterup.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/owl.carousel/owl.carousel.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ asset('assets/vendor/venobox/venobox.js') }}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>

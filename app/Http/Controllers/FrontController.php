@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\{About, Guru, Pengumuman, faq};
+use App\{About, Guru, Pengumuman, Faq, Message, Subscribe};
 
 class FrontController extends Controller
 {
@@ -48,5 +48,30 @@ class FrontController extends Controller
     public function kontak()
     {
         return view ('kontak');
+    }
+
+    public function message(Request $request)
+    {
+        $message = new Message();
+        $message->name = $request->name;
+        $message->email = $request->email;
+        $message->subject = $request->subject;
+        $message->body = $request->body;
+        $message->save();
+
+        return redirect()->back()->with('success','message sent successfully');
+
+    }
+
+    public function subscribe(Request $request)
+    {
+        $subs = new Subscribe();
+        $subs->email = $request->email;
+        $subs->save();
+        return redirect()->back()->with('subssuccess','You have successfully subscribed');
+    }
+    public function gallery()
+    {
+        return view('gallery');
     }
 }
