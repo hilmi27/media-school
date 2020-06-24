@@ -16,7 +16,7 @@
 
         <div class="row">
 
-          @foreach ($pengumuman as $data)
+          @foreach ($pengumumans as $data)
           <div class="card mb-3" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="pagination justify-content-center">
-        {{ $pengumuman->links() }}
+        {{ $pengumumans->links() }}
       </div>
 
       </div>

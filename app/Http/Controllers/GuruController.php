@@ -112,16 +112,16 @@ class GuruController extends Controller
         $guru->email    = $request->email;
         $guru->phone    = $request->phone;
 
-        $new_logo = $request->file('logo');
+        $photo = $request->file('photo');
 
-        if($new_logo){
-        if($guru->logo && file_exists(storage_path('app/public/' . $guru->logo))){
-            \Storage::delete('public/'. $guru->logo);
+        if($photo){
+        if($guru->photo && file_exists(storage_path('app/public/' . $guru->photo))){
+            \Storage::delete('public/'. $guru->photo);
         }
 
-        $new_cover_path = $new_logo->store('images/guru', 'public');
+        $new_cover_path = $photo->store('images/guru', 'public');
 
-        $guru->logo = $new_cover_path;
+        $guru->photo = $new_cover_path;
         }
 
 

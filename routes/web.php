@@ -110,4 +110,37 @@ Route::prefix('admin')->middleware('auth')->group(function () {
  
      Route::delete('album/destroy/{id}','AlbumController@destroy')->name('admin.album.destroy');
 
+       // General Settings
+
+     Route::get('general/edit','GeneralController@edit')->name('admin.general.edit');
+ 
+     Route::post('general/edit','GeneralController@update')->name('admin.general.update');
+
+        // Manage Link
+    Route::get('link','LinkController@index')->name('admin.link');
+
+    Route::get('link/create','LinkController@create')->name('admin.link.create');
+
+    Route::post('link/create','LinkController@store')->name('admin.link.store');
+
+    Route::get('link/edit/{id}','LinkController@edit')->name('admin.link.edit');
+
+    Route::post('link/edit/{id}','LinkController@update')->name('admin.link.update');
+
+    Route::delete('link/destroy/{id}','LinkController@destroy')->name('admin.link.destroy');
+
+    // Manage Banner
+
+    Route::get('banner-slider','BannerController@index')->name('admin.banner');
+
+    Route::get('banner-slider/create','BannerController@create')->name('admin.banner.create');
+
+    Route::post('banner-slider/create','BannerController@store')->name('admin.banner.store');
+
+    Route::get('banner-slider/edit/{id}','BannerController@edit')->name('admin.banner.edit');
+
+    Route::post('banner-slider/edit/{id}','BannerController@update')->name('admin.banner.update');
+
+    Route::delete('banner-slider/destroy/{id}','BannerController@destroy')->name('admin.banner.destroy');
+
 });

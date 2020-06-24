@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Mentor Bootstrap Template - Index</title>
+  <title>{{ $general->title }}</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -43,7 +43,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo mr-auto"><a href="index.html">Mentor</a></h1>
+      <h1 class="logo mr-auto"><a href="index.html">{{ $general->name }}</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -52,15 +52,14 @@
           <li {{ request()->is('/') ? 'class=active' : '' }}><a href="{{ route('homepage') }}">Beranda</a></li>
           <li {{ request()->is('tentang-kami') ? 'class=active' : '' }}><a href="{{ route('about') }}">Tentang Kami</a></li>
           <li {{ request()->is('data-pengajar') ? 'class=active' : '' }}><a href="{{ route('guru') }}">Guru</a></li>
-          <li {{ request()->is('agenda') ? 'class=active' : '' }}><a href="{{ route('agenda') }}">Agenda</a></li>
           <li {{ request()->is('pengumuman') ? 'class=active' : '' }}><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
-          <li {{ request()->is('gallery') ? 'class=active' : '' }}><a href="{{ route('gallery') }}">Gallery</a></li>
           <li {{ request()->is('hubungi-kami') ? 'class=active' : '' }}><a href="{{ route('kontak') }}">Hubungi Kami</a></li>
+          <li><a href="">Member Area</a> </li>
 
         </ul>
       </nav><!-- .nav-menu -->
 
-      <a href="courses.html" class="get-started-btn">PPDB</a>
+      <a href="#" class="get-started-btn">PPDB</a>
 
     </div>
   </header><!-- End Header -->
@@ -75,41 +74,35 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Mentor</h3>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+            <h3>{{ $general->name }}</h3>
+            <p>{{ $general->address }}
+              <br><br>
+              <strong>Phone:</strong> {{ $general->phone }}<br>
+              <strong>Email:</strong> {{ $general->email }}<br>
             </p>
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>Menu</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              @foreach ($link as $item)
+                  <li><i class="bx bx-chevron-right"></i> <a href="{{ $item->link }}" target="_blank">{{ $item->name }}</a></li>
+              @endforeach
+              
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>Pengumuman Terbaru</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              @foreach ($newpengumuman as $pengumuman)
+                   <li><i class="bx bx-chevron-right"></i> <a href="{{ route('pengumumanshow',$pengumuman->slug) }}">{{ substr($pengumuman->title,0,30) }}</a></li>
+              @endforeach  
             </ul>
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <h4>Dapatkan Berita Terbaru</h4>
              @if (session('subssuccess'))
 
             <div class="alert alert-success">
@@ -148,7 +141,7 @@
 
       <div class="mr-md-auto text-center text-md-left">
         <div class="copyright">
-          &copy; Copyright <strong><span>Mentor</span></strong>. All Rights Reserved
+          &copy; Copyright <strong><span>{{ $general->footer }}</span></strong> All Rights Reserved
         </div>
         <div class="credits">
           <!-- All the links in the footer should remain intact. -->
@@ -159,11 +152,9 @@
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="{{ $general->twitter }}" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="{{ $general->facebook }}" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="{{ $general->instagram }}" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
       </div>
     </div>
   </footer><!-- End Footer -->

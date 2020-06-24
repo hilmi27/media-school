@@ -4,54 +4,84 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\{About, Guru, Pengumuman, Faq, Message, Subscribe};
+use App\{About, Guru, Pengumuman, Faq, Message, Subscribe, General, Link, Banner};
 
 class FrontController extends Controller
 {
     public function homepage()
     {
-        return view('home');
+        $guru = Guru::orderBy('name','asc')->limit(6)->get();
+        $about = About::find(1);
+        $general = General::find(1);
+        $newpengumuman = Pengumuman::orderBy('id','desc')->limit(5)->get();
+        $link = Link::orderBy('id','asc')->get();
+        $banner = Banner::orderBy('id','desc')->get();
+        return view('home',compact('guru','about','newpengumuman','general','link','banner'));
     }
 
     public function about()
     {
         $about = About::find(1);
         $faq = Faq::orderBy('question','asc')->get();
-        return view ('about',compact('about','faq'));
+        $general = General::find(1);
+        $newpengumuman = Pengumuman::orderBy('id','desc')->limit(5)->get();
+        $link = Link::orderBy('id','asc')->get();
+        return view ('about',compact('about','faq','newpengumuman','general','link'));
     }
 
     public function guru()
     {
         $gurus = Guru::orderBy('name','asc')->paginate(9);
-        return view('guru',compact('gurus'));
+        $general = General::find(1);
+        $newpengumuman = Pengumuman::orderBy('id','desc')->limit(5)->get();
+        $link = Link::orderBy('id','asc')->get();
+        return view('guru',compact('gurus','newpengumuman','general','link'));
     }
 
     public function agenda()
     {
-        return view('agenda');
+        $newpengumuman = Pengumuman::orderBy('id','desc')->limit(5)->get();
+        $general = General::find(1);
+        $link = Link::orderBy('id','asc')->get();
+        return view('agenda',compact('newpengumuman','general','link'));
     }
 
     public function pengumuman()
     {
-        $pengumuman = Pengumuman::orderBy('date','desc')->paginate(8);
-        
-        return view('pengumuman',compact('pengumuman'));
+        $pengumumans = Pengumuman::orderBy('date','desc')->paginate(8);
+        $newpengumuman = Pengumuman::orderBy('id','desc')->limit(5)->get();
+        $general = General::find(1);
+        $link = Link::orderBy('id','asc')->get();
+        return view('pengumuman',compact('newpengumuman','pengumumans','general','link'));
     }
 
     public function pengumumanshow($slug)
     {
         $pengumuman = Pengumuman::where('slug',$slug)->first();
         $pengumumans = Pengumuman::orderBy('id','desc')->limit(5)->get();
-        return view('pengumumanshow',compact('pengumuman','pengumumans'));
+        $newpengumuman = Pengumuman::orderBy('id','desc')->limit(5)->get();
+        $general = General::find(1);
+        $link = Link::orderBy('id','asc')->get();
+        return view('pengumumanshow',compact('pengumuman','pengumumans','newpengumuman','general','link'));
     }
 
     public function kontak()
     {
-        return view ('kontak');
+        $newpengumuman = Pengumuman::orderBy('id','desc')->limit(5)->get();
+        $general = General::find(1);
+        $link = Link::orderBy('id','asc')->get();
+        return view ('kontak',compact('newpengumuman','general','link'));
     }
 
     public function message(Request $request)
     {
+          \Validator::make($request->all(), [
+            "name" => "required",
+            "email" => "required",
+            "subject" => "required",
+            "body" => "required"    
+        ])->validate();
+
         $message = new Message();
         $message->name = $request->name;
         $message->email = $request->email;
