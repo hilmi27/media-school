@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('storage/'.$general->favicon) }}" rel="icon">
   <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -43,7 +43,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo mr-auto"><a href="index.html">{{ $general->name }}</a></h1>
+      <h1 class="logo mr-auto"><a href="{{ route('homepage') }}">{{ $general->name }}</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -54,7 +54,7 @@
           <li {{ request()->is('data-pengajar') ? 'class=active' : '' }}><a href="{{ route('guru') }}">Guru</a></li>
           <li {{ request()->is('pengumuman') ? 'class=active' : '' }}><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
           <li {{ request()->is('hubungi-kami') ? 'class=active' : '' }}><a href="{{ route('kontak') }}">Hubungi Kami</a></li>
-          <li><a href="">Member Area</a> </li>
+          <li><a href="{{ route('login') }}">Member Area</a> </li>
 
         </ul>
       </nav><!-- .nav-menu -->

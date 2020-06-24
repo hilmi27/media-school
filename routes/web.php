@@ -38,7 +38,7 @@ Route::post('hubungi-kami','FrontController@message')->name('message');
 Route::post('subscribe','FrontController@subscribe')->name('subscribe');
 
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->middleware('role:admin')->group(function () {
 
     Route::get('dashboard','DashboardController@index')->name('admin.dashboard');
 
@@ -144,3 +144,16 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::delete('banner-slider/destroy/{id}','BannerController@destroy')->name('admin.banner.destroy');
 
 });
+
+// Route::get('siswa-page', function() {
+//     return 'Halaman untuk Siswa';
+// })->middleware('role:siswa')->name('siswa.page');
+
+Route::prefix('siswa')->middleware('role:siswa')->group(function () {
+
+    Route::get('dashboard','SiswaController@dashboard')->name('siswa.dashboard');
+});
+
+Route::get('guru-page', function() {
+    return 'Halaman untuk Guru';
+})->middleware('role:guru')->name('guru.page');
