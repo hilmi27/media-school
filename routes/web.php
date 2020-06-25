@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -37,8 +37,15 @@ Route::post('hubungi-kami','FrontController@message')->name('message');
 
 Route::post('subscribe','FrontController@subscribe')->name('subscribe');
 
+// Admin Login
 
-Route::prefix('admin')->middleware('role:admin')->group(function () {
+Route::get('admin/login', 'Auth\AdminAuthController@getLogin')->name('admin.login');
+
+Route::post('admin/login', 'Auth\AdminAuthController@postLogin');
+
+Route::post('admin/logout', 'Auth\AdminAuthController@postLogout')->name('admin.logout');
+
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
     Route::get('dashboard','DashboardController@index')->name('admin.dashboard');
 
@@ -143,17 +150,51 @@ Route::prefix('admin')->middleware('role:admin')->group(function () {
 
     Route::delete('banner-slider/destroy/{id}','BannerController@destroy')->name('admin.banner.destroy');
 
+
+    // Manage File
+
+    Route::get('file','FileController@index')->name('admin.file');
+
+    Route::get('file/create','FileController@create')->name('admin.file.create');
+
+    Route::post('file/create','FileController@store')->name('admin.file.store');
+
+    Route::get('file/edit/{id}','FileController@edit')->name('admin.file.edit');
+
+    Route::post('file/edit/{id}','FileController@update')->name('admin.file.update');
+
+    Route::delete('file/destroy/{id}','FileController@destroy')->name('admin.file.destroy');
+
 });
 
-// Route::get('siswa-page', function() {
-//     return 'Halaman untuk Siswa';
-// })->middleware('role:siswa')->name('siswa.page');
+// Siswa Login
+Route::get('siswa/login', 'Auth\SiswaAuthController@getLogin')->name('siswa.login');
+Route::post('siswa/login', 'Auth\SiswaAuthController@postLogin');
+Route::post('siswa/logout', 'Auth\SiswaAuthController@postLogout')->name('siswa.logout');
 
-Route::prefix('siswa')->middleware('role:siswa')->group(function () {
+Route::prefix('siswa')->middleware('auth:siswa')->group(function () {
 
     Route::get('dashboard','SiswaController@dashboard')->name('siswa.dashboard');
+
+    Route::get('file/download','SiswaController@file')->name('siswa.file');
+
+    Route::get('file/download/{id}','SiswaController@unduh')->name('siswa.file.unduh');
+
+    Route::get('profile/edit/{id}','SiswaController@edit')->name('siswa.profile.edit');
+
+    Route::post('profile/edit/{id}','SiswaController@update')->name('siswa.profile.update');
+
+    
 });
 
-Route::get('guru-page', function() {
-    return 'Halaman untuk Guru';
-})->middleware('role:guru')->name('guru.page');
+// Guru Login
+Route::get('guru/login', 'Auth\GuruAuthController@getLogin')->name('guru.login');
+Route::post('guru/login', 'Auth\GuruAuthController@postLogin');
+Route::post('guru/logout', 'Auth\GuruAuthController@postLogout')->name('guru.logout');
+
+
+Route::prefix('guru')->middleware('auth:guru')->group(function(){
+ 
+    Route::get('dashboard', 'GuruController@dashboard' )->name('guru.dashboard');
+
+});

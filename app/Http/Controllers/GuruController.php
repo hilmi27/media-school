@@ -8,6 +8,10 @@ use App\Guru;
 
 class GuruController extends Controller
 {
+    public function dashboard()
+    {
+        return view('guru.dashboard');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -47,6 +51,7 @@ class GuruController extends Controller
         $guru->study = $request->study;
         $guru->address = $request->address;
         $guru->email = $request->email;
+        $guru->password = \Hash::make($request->password);
         $guru->phone = $request->phone;
         $photo = $request->file('photo');
 
@@ -110,6 +115,7 @@ class GuruController extends Controller
         $guru->study    = $request->study;
         $guru->address  = $request->address;
         $guru->email    = $request->email;
+        // $guru->password = \Hash::make($request->password);
         $guru->phone    = $request->phone;
 
         $photo = $request->file('photo');

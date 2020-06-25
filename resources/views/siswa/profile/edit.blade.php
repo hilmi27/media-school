@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.siswa')
 
 @section('styles')
 <style>
@@ -48,7 +48,17 @@
 </div>
 @endif
 
-<form action="{{ route('admin.guru.update',$guru->id) }}" method="POST" enctype="multipart/form-data">
+ @if (session('success'))
+
+        <div class="alert alert-success">
+
+        {{ session('success') }}
+
+        </div>
+
+        @endif
+
+<form action="{{ route('siswa.profile.update',['id' => Auth()->user()->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="form-group">
@@ -57,7 +67,7 @@
 
             <div class="picture">
 
-                <img src="{{asset('storage/' . $guru->photo)}}" class="picture-src" id="wizardPicturePreview" height="200px" width="400px" title=""/>
+                <img src="{{asset('storage/' . Auth()->user()->photo)}}" class="picture-src" id="wizardPicturePreview" height="200px" width="400px" title=""/>
 
                 <input type="file" id="wizard-picture" name="photo" class="form-control {{$errors->first('photo') ? "is-invalid" : "" }} ">
 
@@ -75,14 +85,14 @@
 
     <div class="form-group ml-5">
 
-        <label for="nip" class="col-sm-2 col-form-label">NIP</label>
+        <label for="nis" class="col-sm-2 col-form-label">NIS</label>
 
         <div class="col-sm-7">
 
-            <input type="number" name='nip' class="form-control {{$errors->first('nip') ? "is-invalid" : "" }} " value="{{old('nip') ? old('nip') : $guru->nip}}" id="nip" placeholder="NIP">
+            <input type="number" name='nis' class="form-control {{$errors->first('nis') ? "is-invalid" : "" }} " value="{{old('nis') ? old('nis') : Auth()->user()->nis}}" id="nip" placeholder="NIS">
 
             <div class="invalid-feedback">
-                {{ $errors->first('nip') }}    
+                {{ $errors->first('nis') }}    
             </div>   
 
         </div>
@@ -95,26 +105,10 @@
 
         <div class="col-sm-7">
 
-            <input type="text" name='name' class="form-control {{$errors->first('name') ? "is-invalid" : "" }} " value="{{old('name') ? old('name') : $guru->name}}" id="name" placeholder="PT. Angin Ribut">
+            <input type="text" name='name' class="form-control {{$errors->first('name') ? "is-invalid" : "" }} " value="{{old('name') ? old('name') : Auth()->user()->name}}" id="name" placeholder="Jhon Doe">
 
             <div class="invalid-feedback">
                 {{ $errors->first('name') }}    
-            </div>   
-
-        </div>
-
-    </div>
-
-    <div class="form-group ml-5">
-
-        <label for="study" class="col-sm-2 col-form-label">Mata Pelajaran</label>
-
-        <div class="col-sm-7">
-
-            <input type="text" name='study' class="form-control {{$errors->first('study') ? "is-invalid" : "" }} " value="{{old('study') ? old('study') : $guru->study}}" id="study" placeholder="Fisika">
-
-            <div class="invalid-feedback">
-                {{ $errors->first('study') }}    
             </div>   
 
         </div>
@@ -131,9 +125,9 @@
 
                 <option selected disabled>Pilih Gender</option>
 
-                <option {{$guru->gender == 'Laki-laki' ? 'selected' : ''}} value="Laki-laki">Laki-laki</option>
+                <option {{Auth()->user()->gender == 'Laki-laki' ? 'selected' : ''}} value="Laki-laki">Laki-laki</option>
 
-                <option {{$guru->gender == 'Perempuan' ? 'selected' : ''}} value="Perempuan">Perempuan</option>
+                <option {{Auth()->user()->gender == 'Perempuan' ? 'selected' : ''}} value="Perempuan">Perempuan</option>
 
             </select>
 
@@ -147,14 +141,14 @@
 
     <div class="form-group ml-5">
 
-        <label for="p_birth" class="col-sm-2 col-form-label">Tempat Lahir</label>
+        <label for="birth_p" class="col-sm-2 col-form-label">Tempat Lahir</label>
 
         <div class="col-sm-7">
 
-            <input type="text" name='p_birth' class="form-control {{$errors->first('p_birth') ? "is-invalid" : "" }} " value="{{old('p_birth') ? old('p_birth') : $guru->p_birth}}" id="p_birth" placeholder="Banyuwangi">
+            <input type="text" name='birth_p' class="form-control {{$errors->first('birth_p') ? "is-invalid" : "" }} " value="{{old('birth_p') ? old('birth_p') : Auth()->user()->birth_p}}" id="birth_p" placeholder="Banyuwangi">
 
             <div class="invalid-feedback">
-                {{ $errors->first('p_birth') }}    
+                {{ $errors->first('birth_p') }}    
             </div>   
 
         </div>
@@ -163,14 +157,14 @@
 
     <div class="form-group ml-5">
 
-        <label for="d_birth" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+        <label for="birth_d" class="col-sm-2 col-form-label">Tanggal Lahir</label>
 
         <div class="col-sm-7">
 
-            <input type="date" name='d_birth' class="form-control {{$errors->first('d_birth') ? "is-invalid" : "" }} " value="{{old('d_birth') ? old('d_birth') : $guru->d_birth}}" id="d_birth" placeholder="Banyuwangi">
+            <input type="date" name='birth_d' class="form-control {{$errors->first('birth_d') ? "is-invalid" : "" }} " value="{{old('birth_d') ? old('birth_d') : Auth()->user()->birth_d}}" id="birth_d" placeholder="Banyuwangi">
 
             <div class="invalid-feedback">
-                {{ $errors->first('d_birth') }}    
+                {{ $errors->first('birth_d') }}    
             </div>   
 
         </div>
@@ -183,7 +177,7 @@
 
         <div class="col-sm-7">
 
-            <input type="text" name='address' class="form-control {{$errors->first('address') ? "is-invalid" : "" }} " value="{{old('address') ? old('address') : $guru->address}}" id="address" placeholder="Kota Ngastino">
+            <input type="text" name='address' class="form-control {{$errors->first('address') ? "is-invalid" : "" }} " value="{{old('address') ? old('address') : Auth()->user()->address}}" id="address" placeholder="Kota Ngastino">
 
             <div class="invalid-feedback">
                 {{ $errors->first('address') }}    
@@ -199,7 +193,7 @@
 
         <div class="col-sm-7">
 
-            <input type="number" name='phone' class="form-control {{$errors->first('phone') ? "is-invalid" : "" }} " value="{{old('phone') ? old('phone') : $guru->phone}}" id="phone" placeholder="62121221211">
+            <input type="number" name='phone' class="form-control {{$errors->first('phone') ? "is-invalid" : "" }} " value="{{old('phone') ? old('phone') : Auth()->user()->phone}}" id="phone" placeholder="62121221211">
 
             <div class="invalid-feedback">
                 {{ $errors->first('phone') }}    
@@ -215,7 +209,7 @@
 
         <div class="col-sm-7">
 
-            <input type="email" name='email' class="form-control {{$errors->first('email') ? "is-invalid" : "" }} " value="{{old('email') ? old('email') : $guru->email}}" id="email" placeholder="example@mail.com">
+            <input type="email" name='email' class="form-control {{$errors->first('email') ? "is-invalid" : "" }} " value="{{old('email') ? old('email') : Auth()->user()->email}}" id="email" placeholder="example@mail.com">
 
             <div class="invalid-feedback">
                 {{ $errors->first('email') }}    

@@ -41,6 +41,21 @@ return [
             'provider' => 'users',
         ],
 
+         'admin' => [
+           'driver' => 'session',
+           'provider' => 'admins',
+        ],
+
+         'siswa' => [
+           'driver' => 'session',
+           'provider' => 'siswas',
+        ],
+
+         'guru' => [
+           'driver' => 'session',
+           'provider' => 'gurus',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -69,6 +84,21 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+         'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
+
+         'siswas' => [
+            'driver' => 'eloquent',
+            'model' => App\Siswa::class,
+        ],
+
+         'gurus' => [
+            'driver' => 'eloquent',
+            'model' => App\Guru::class,
         ],
 
         // 'users' => [

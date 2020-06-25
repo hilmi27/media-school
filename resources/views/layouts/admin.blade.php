@@ -106,15 +106,15 @@
 
       </li>
 
-      {{-- <li class="nav-item">
+      <li class="nav-item">
 
-        <a class="nav-link" href="{{ route('admin.gallery') }}">
+        <a class="nav-link" href="{{ route('admin.file') }}">
 
           <i class="fas fa-fw fa-table"></i>
 
-          <span>Gallery</span></a>
+          <span>File</span></a>
 
-      </li> --}}
+      </li>
 
       <li class="nav-item">
 
@@ -266,13 +266,13 @@
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           
-          <a class="btn btn-primary" href="{{ route('logout') }}"
+          <a class="btn btn-primary" href="{{ route('admin.logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                                       {{ __('Logout') }}
                                                     </a>
 
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
 
