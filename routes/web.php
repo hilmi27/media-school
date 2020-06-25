@@ -215,4 +215,18 @@ Route::prefix('guru')->middleware('auth:guru')->group(function(){
 
     Route::post('profile/edit/{id}','GuruController@updateprofile')->name('guru.profile.update');
 
+     // Manage File
+
+    Route::get('file','GuruFileController@index')->name('guru.file');
+
+    Route::get('file/create','GuruFileController@create')->name('guru.file.create');
+
+    Route::post('file/create','GuruFileController@store')->name('guru.file.store');
+
+    Route::get('file/edit/{id}','GuruFileController@edit')->name('guru.file.edit');
+
+    Route::post('file/edit/{id}','GuruFileController@update')->name('guru.file.update');
+
+    Route::delete('file/destroy/{id}','GuruFileController@destroy')->name('guru.file.destroy');
+
 });

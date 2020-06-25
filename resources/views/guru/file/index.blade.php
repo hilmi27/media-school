@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.guru')
 
 @section('content')
   <!-- Page Heading -->
@@ -17,7 +17,7 @@
 
     <div class="card-header py-3">
 
-        <a href="{{ route('admin.file.create') }}" class="btn btn-success">Create File</a>
+        <a href="{{ route('guru.file.create') }}" class="btn btn-success">Create File</a>
 
     </div>
 
@@ -65,7 +65,7 @@
                         
                         <td>{{ Str::limit( strip_tags( $file->desc ), 50 ) }}...</td>   
 
-                        <td>{{ $file->name }}</td>
+                        <td>{{ $file->class }}</td>
 
                         <td>{{ $file->by }}</td>
                 

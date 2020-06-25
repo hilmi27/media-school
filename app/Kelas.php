@@ -10,4 +10,8 @@ class Kelas extends Model
     {
         return $this->hasMany(Siswa::class);
     }
+    public function files()
+    {
+        return $this->belongsToMany(File::class);
+    }
 }

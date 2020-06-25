@@ -84,6 +84,26 @@
 
       <!-- Nav Item - Tables -->
 
+       <li class="nav-item">
+
+        <a class="nav-link" href="{{ route('admin.faq') }}">
+
+          <i class="fas fa-fw fa-table"></i>
+
+          <span>FAQ</span></a>
+
+      </li>
+      
+      <li class="nav-item">
+
+        <a class="nav-link" href="{{ route('admin.file') }}">
+
+          <i class="fas fa-fw fa-table"></i>
+
+          <span>File</span></a>
+
+      </li>
+
       <li class="nav-item">
 
         <a class="nav-link" href="{{ route('admin.guru') }}">
@@ -91,6 +111,26 @@
           <i class="fas fa-fw fa-table"></i>
 
           <span>Guru</span></a>
+
+      </li>
+
+      <li class="nav-item">
+
+        <a class="nav-link" href="{{ route('admin.link') }}">
+
+          <i class="fas fa-fw fa-table"></i>
+
+          <span>Link</span></a>
+
+      </li>
+      
+      <li class="nav-item">
+
+        <a class="nav-link" href="{{ route('admin.pengumuman') }}">
+
+          <i class="fas fa-fw fa-chart-area"></i>
+
+          <span>Pengumuman</span></a>
 
       </li>
 
@@ -106,45 +146,13 @@
 
        <!-- Nav Item - Charts -->
 
-      <li class="nav-item">
+        
 
-        <a class="nav-link" href="{{ route('admin.pengumuman') }}">
+     
 
-          <i class="fas fa-fw fa-chart-area"></i>
+      
 
-          <span>Pengumuman</span></a>
-
-      </li>
-
-      <li class="nav-item">
-
-        <a class="nav-link" href="{{ route('admin.file') }}">
-
-          <i class="fas fa-fw fa-table"></i>
-
-          <span>File</span></a>
-
-      </li>
-
-      <li class="nav-item">
-
-        <a class="nav-link" href="{{ route('admin.faq') }}">
-
-          <i class="fas fa-fw fa-table"></i>
-
-          <span>FAQ</span></a>
-
-      </li>
-
-       <li class="nav-item">
-
-        <a class="nav-link" href="{{ route('admin.link') }}">
-
-          <i class="fas fa-fw fa-table"></i>
-
-          <span>Link</span></a>
-
-      </li>
+      
 
       <!-- Nav Item - Pages Collapse Menu -->
 

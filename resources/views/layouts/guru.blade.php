@@ -76,7 +76,7 @@
 
        <li class="nav-item active">
 
-        <a class="nav-link" href="{{ route('siswa.file') }}">
+        <a class="nav-link" href="{{ route('guru.file') }}">
 
           <i class="fas fa-fw fa-tachometer-alt"></i>
 

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\File;
 
-use App\{Guru, Siswa, File, Message};
-
-class DashboardController extends Controller
+class GuruFileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +14,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $guru = Guru::count();
-        $siswa = Siswa::count();
-        $file = File::count();
-        $message = Message::count();
-        return view('admin.dashboard',compact('guru','siswa','file','message'));
+        $file = File::orderBy('id','desc')->get();
+        return view('guru.file.index',compact('file'));
     }
 
     /**
@@ -29,7 +25,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
+        return view('guru.file.create');
     }
 
     /**
@@ -40,7 +36,29 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = new File();
+        $file->title = $request->title;
+        $file->desc = $request->desc;
+        $file->class = $request->class;
+        $file->by = $request->by;
+
+        $softfile = $request->file('file');
+
+        if($softfile){
+        $file_path = $softfile->store('file', 'public');
+
+        $file->file = $file_path;
+        }
+
+       if ( $file->save()) {
+
+        return redirect()->route('guru.file')->with('success', 'File added successfully');
+
+       } else {
+           
+        return redirect()->route('guru.file.create')->with('error', 'File failed to add');
+
+       }
     }
 
     /**
