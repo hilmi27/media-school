@@ -67,6 +67,20 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::delete('guru/destroy/{id}','GuruController@destroy')->name('admin.guru.destroy');
 
 
+     // Manage Siswa
+    Route::get('siswa','SiswaController@index')->name('admin.siswa');
+
+    Route::get('siswa/create','SiswaController@create')->name('admin.siswa.create');
+
+    Route::post('siswa/create','SiswaController@store')->name('admin.siswa.store');
+
+    Route::get('siswa/edit/{id}','SiswaController@edit')->name('admin.siswa.edit');
+
+    Route::post('siswa/edit/{id}','SiswaController@update')->name('admin.siswa.update');
+
+    Route::delete('siswa/destroy/{id}','SiswaController@destroy')->name('admin.siswa.destroy');
+
+
      // Manage Pengumuman
      Route::get('pengumuman','PengumumanController@index')->name('admin.pengumuman');
 
@@ -81,7 +95,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
      Route::delete('pengumuman/destroy/{id}','PengumumanController@destroy')->name('admin.pengumuman.destroy');
 
 
-      // Manage Pengumuman
+      // Manage faq
      Route::get('faq','FaqController@index')->name('admin.faq');
 
      Route::get('faq/create','FaqController@create')->name('admin.faq.create');
@@ -180,9 +194,9 @@ Route::prefix('siswa')->middleware('auth:siswa')->group(function () {
 
     Route::get('file/download/{id}','SiswaController@unduh')->name('siswa.file.unduh');
 
-    Route::get('profile/edit/{id}','SiswaController@edit')->name('siswa.profile.edit');
+    Route::get('profile/edit/{id}','SiswaController@editprofile')->name('siswa.profile.edit');
 
-    Route::post('profile/edit/{id}','SiswaController@update')->name('siswa.profile.update');
+    Route::post('profile/edit/{id}','SiswaController@updateprofile')->name('siswa.profile.update');
 
     
 });
@@ -196,5 +210,9 @@ Route::post('guru/logout', 'Auth\GuruAuthController@postLogout')->name('guru.log
 Route::prefix('guru')->middleware('auth:guru')->group(function(){
  
     Route::get('dashboard', 'GuruController@dashboard' )->name('guru.dashboard');
+
+    Route::get('profile/edit/{id}','GuruController@editprofile')->name('guru.profile.edit');
+
+    Route::post('profile/edit/{id}','GuruController@updateprofile')->name('guru.profile.update');
 
 });

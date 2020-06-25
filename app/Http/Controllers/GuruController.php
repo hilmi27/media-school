@@ -157,4 +157,51 @@ class GuruController extends Controller
 
         return redirect()->route('admin.guru')->with('success', 'Data deleted successfully');
     }
+
+    public function editprofile($id)
+    {
+        $guru = Guru::findOrFail($id);
+
+        return view('guru.profile.edit',compact('guru'));
+    }
+
+     public function updateprofile(Request $request, $id)
+    {
+        $guru           = Guru::findOrFail($id);
+        $guru->nip      = $request->nip;
+        $guru->name     = $request->name;
+        $guru->gender   = $request->gender;
+        $guru->p_birth  = $request->p_birth;
+        $guru->d_birth  = $request->d_birth;
+        $guru->study    = $request->study;
+        $guru->address  = $request->address;
+        $guru->email    = $request->email;
+        // $guru->password = \Hash::make($request->password);
+        $guru->phone    = $request->phone;
+
+        $photo = $request->file('photo');
+
+        if($photo){
+        if($guru->photo && file_exists(storage_path('app/public/' . $guru->photo))){
+            \Storage::delete('public/'. $guru->photo);
+        }
+
+        $new_cover_path = $photo->store('images/guru', 'public');
+
+        $guru->photo = $new_cover_path;
+        }
+
+
+        // dd($guru);
+        if ( $guru->save()) {
+
+            return redirect()->back()->with('success', 'Data updated successfully');
+    
+           } else {
+               
+            return redirect()->back()->with('error', 'Data failed to update');
+    
+           }
+    }
+
 }

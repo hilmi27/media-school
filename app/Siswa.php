@@ -13,4 +13,9 @@ class Siswa extends Authenticable
     protected $guard = 'siswa';
 
     protected $hidden = ['password'];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }

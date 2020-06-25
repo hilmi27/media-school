@@ -54,7 +54,6 @@
           <li {{ request()->is('data-pengajar') ? 'class=active' : '' }}><a href="{{ route('guru') }}">Guru</a></li>
           <li {{ request()->is('pengumuman') ? 'class=active' : '' }}><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
           <li {{ request()->is('hubungi-kami') ? 'class=active' : '' }}><a href="{{ route('kontak') }}">Hubungi Kami</a></li>
-          <li><a href="{{ route('login') }}">Member Area</a> </li>
 
         </ul>
       </nav><!-- .nav-menu -->
